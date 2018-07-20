@@ -10,7 +10,7 @@ class AlbumList extends React.Component {
 
   render() {
     const { error, loading, albums } = this.props;
-    
+  
     if (error) {
       return <div>Error! {error.message}</div>;
     }
@@ -19,12 +19,26 @@ class AlbumList extends React.Component {
       return <div>Loading...</div>;
     }
 
+    var albumPreviews = []
+    for(var albumId in albums) {
+      var firstPhoto = albums[albumId][0]
+      var preview = {
+        "id" : albumId,
+        "thumbnailUrl" : firstPhoto.thumbnailUrl,
+        "title" : "Album " + albumId,
+        "photoCount" : albums[albumId].length
+      }
+      albumPreviews.push(preview)
+    }
+
     return (
       <ul>
-        {albums.map(album =>
+        {
+          albumPreviews.map(album =>
           <li key={album.id}>
             <img src={album.thumbnailUrl} />
             <h4>{album.title}</h4> 
+            <h4>Count:{album.photoCount}</h4> 
           </li>
         )}
       </ul>

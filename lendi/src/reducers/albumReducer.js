@@ -13,28 +13,35 @@ const initialState = {
 export default function albumReducer(state = initialState, action) {
   switch(action.type) {
     case FETCH_ALBUMS_BEGIN:
-      return {
-        ...state,
-        loading: true,
-        error: null
-      };
+		return {
+		...state,
+		loading: true,
+		error: null
+		};
 
     case FETCH_ALBUMS_SUCCESS:
-      return {
-        ...state,
-        loading: false,
-        albums: action.payload.albums
-      };
+	
+		const grouped = action.payload.albums.reduce((albums, photo) => {
+		  if (!albums[photo.albumId]) albums[photo.albumId] = [];
+		  albums[photo.albumId].push(photo);
+		  return albums;
+		}, {});
+    
+		return {
+		...state,
+		loading: false,
+		albums: grouped
+		};
 
     case FETCH_ALBUMS_FAILURE:
-      return {
-        ...state,
-        loading: false,
-        error: action.payload.error,
-        albums: []
-      };
+		return {
+		...state,
+		loading: false,
+		error: action.payload.error,
+		albums: []
+		};
 
     default:
-      return state;
+    	return state;
   }
 }
