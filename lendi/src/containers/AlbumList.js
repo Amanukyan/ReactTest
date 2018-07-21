@@ -1,6 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import { fetchAlbums } from "../actions/albumActions";
+import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router'
 
 class AlbumList extends React.Component {
 
@@ -36,9 +38,11 @@ class AlbumList extends React.Component {
         {
           albumPreviews.map(album =>
           <li key={album.id}>
-            <img src={album.thumbnailUrl} />
-            <h4>{album.title}</h4> 
-            <h4>Count:{album.photoCount}</h4> 
+            <Link to={'/album/' + album.id}>
+              <img src={album.thumbnailUrl} />
+              <h4>{album.title}</h4> 
+              <h4>Count:{album.photoCount}</h4> 
+            </Link>
           </li>
         )}
       </ul>
@@ -52,4 +56,4 @@ const mapStateToProps = state => ({
   error: state.error
 });
 
-export default connect(mapStateToProps)(AlbumList);
+export default withRouter(connect(mapStateToProps)(AlbumList));
