@@ -26,12 +26,12 @@ export default function albumReducer(state = initialState, action) {
 		  albums[photo.albumId].push(photo);
 		  return albums;
 		}, {});
-    
-		return {
-		...state,
-		loading: false,
-		albums: grouped
-		};
+    	
+    	return Object.assign({}, state, {
+			albums: grouped,
+  			loading: false,
+  			error: null
+		});
 
     case FETCH_ALBUMS_FAILURE:
 		return {
