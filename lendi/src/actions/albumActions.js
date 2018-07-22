@@ -2,12 +2,12 @@ export const FETCH_ALBUMS_BEGIN   = 'FETCH_ALBUMS_BEGIN';
 export const FETCH_ALBUMS_SUCCESS = 'FETCH_ALBUMS_SUCCESS';
 export const FETCH_ALBUMS_FAILURE = 'FETCH_ALBUMS_FAILURE';
 
-const API = 'https://jsonplaceholder.typicode.com/photos';
+const ApiUrl = 'https://jsonplaceholder.typicode.com/photos';
 
 export function fetchAlbums() {
   return dispatch => {
     dispatch(fetchAlbumsBegin());
-    return fetch(API)
+    return fetch(ApiUrl)
       .then(handleErrors)
       .then(res => res.json())
       .then(json => {

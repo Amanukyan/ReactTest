@@ -10,6 +10,15 @@ const initialState = {
   error: null
 };
 
+function groupPhotosByAlbumId(photos){
+	const grouped = photos.reduce((albums, photo) => {
+		  if (!albums[photo.albumId]) albums[photo.albumId] = [];
+		  albums[photo.albumId].push(photo);
+		  return albums;
+		}, {});
+	return grouped
+}
+
 export default function albumReducer(state = initialState, action) {
   switch(action.type) {
     case FETCH_ALBUMS_BEGIN:
@@ -20,13 +29,7 @@ export default function albumReducer(state = initialState, action) {
 		};
 
     case FETCH_ALBUMS_SUCCESS:
-	
-		const grouped = action.payload.albums.reduce((albums, photo) => {
-		  if (!albums[photo.albumId]) albums[photo.albumId] = [];
-		  albums[photo.albumId].push(photo);
-		  return albums;
-		}, {});
-    	
+		const grouped = groupPhotosByAlbumId(action.payload.albums)
     	return Object.assign({}, state, {
 			albums: grouped,
   			loading: false,

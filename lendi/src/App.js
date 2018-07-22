@@ -3,7 +3,7 @@ import { Provider } from "react-redux"
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import AlbumList from "./containers/AlbumList"
 import Album from './containers/Album'
- 
+
 class App extends Component {
 
   render() {
