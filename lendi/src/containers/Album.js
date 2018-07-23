@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import './style.css';
  
 class Album extends Component {
 
@@ -11,15 +12,16 @@ class Album extends Component {
 		const { id, album} = this.props;
 		console.log("id==",id)
 		return (
-			<ul>
-			{
-			  album.map(photo =>
-			  <li key={photo.id}>
-			     <img src={photo.thumbnailUrl} />
-			     <h4>{photo.title}</h4> 
-			  </li>
-			)}
-			</ul>
+			<div id="photos">
+  				<ul id="photo-gallery">
+  					{
+					  album.map(photo =>
+						  <li key={photo.id}>
+						     <img alt={photo.title} src={photo.thumbnailUrl} />
+						  </li>
+					)}
+				</ul>
+			</div>
 		);
 	}
 }

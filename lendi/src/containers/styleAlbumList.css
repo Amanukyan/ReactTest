@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand:400,700');
+
+body{
+  box-sizing: border-box;
+  padding: 2em;
+  margin: 0 auto;
+  max-width: 1000px;
+  width: 100%;
+  background: #eee;
+  font-family: 'Quicksand', serif;
+  font-style: normal;
+}
+
+.grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 3em;
+}
+
+.card{
+  border-radius: 0.25rem;
+  overflow:hidden;
+  background: #fff;
+  box-shadow: 0 2px 16px rgba(0,0,0,.05);
+}
+
+.card_image{
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.card_content{
+  text-align: center;
+  padding: 1em 1em 1em;
+}
+
+.card_title{
+  margin: 0;
+  font-size: 20px;
+  color: black;
+}
+
+.card_subtitle{
+  margin: 0;
+  font-size: 15px;
+  color: gray;
+}
+
+@media screen and (max-width: 900px){
+  .grid{
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 650px){
+  .grid{
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 450px){
+  .grid{
+    grid-template-columns: 1fr;
+  }
+}

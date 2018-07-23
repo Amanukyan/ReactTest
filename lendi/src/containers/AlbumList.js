@@ -4,6 +4,8 @@ import { fetchAlbums } from "../actions/albumActions";
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router'
 
+import './styleAlbumList.css';
+
 class AlbumList extends React.Component {
 
   componentDidMount() {
@@ -34,18 +36,20 @@ class AlbumList extends React.Component {
     }
 
     return (
-      <ul>
+      <div class="grid">
         {
           albumPreviews.map(album =>
-          <li key={album.id}>
-            <Link to={'/album/' + album.id}>
-              <img src={album.thumbnailUrl} />
-              <h4>{album.title}</h4> 
-              <h4>Count:{album.photoCount}</h4> 
+            <Link to={'/album/' + album.id} style={{ textDecoration: 'none' }}>
+              <div class="card" key={album.id}>
+                <img class="card_image" alt={album.title} src={album.thumbnailUrl} />
+                <div class="card_content">
+                    <h3 class="card_title">{album.title}</h3>
+                    <p class="card_subtitle">{album.photoCount} curated photos</p>
+                </div>
+              </div>
             </Link>
-          </li>
         )}
-      </ul>
+      </div>
     );
   }
 }
