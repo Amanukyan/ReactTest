@@ -4,14 +4,10 @@ import './style.css';
  
 class Album extends Component {
 
-	componentDidMount() {
-    	console.log(" componentDidMount id==",this.props.id)
-  	}
-
 	render() {
-		const { id, album} = this.props;
-		console.log("id==",id)
+		const {album} = this.props;
 		return (
+			album ?
 			<div id="photos">
   				<ul id="photo-gallery">
   					{
@@ -21,6 +17,10 @@ class Album extends Component {
 						  </li>
 					)}
 				</ul>
+			</div>
+			:
+			<div>
+				{/* TODO: */}
 			</div>
 		);
 	}

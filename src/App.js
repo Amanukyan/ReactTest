@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
-import { Provider } from "react-redux"
+import { Provider, connect } from "react-redux"
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { fetchAlbums } from "./actions/albumActions";
 import AlbumList from "./scenes/AlbumList"
 import PhotoGallery from './scenes/PhotoGallery'
 
 class App extends Component {
+
+  componentDidMount() {
+    this.props.dispatch(fetchAlbums());
+  }
 
   render() {
     return (
@@ -22,5 +27,5 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect(null)(App)
 
