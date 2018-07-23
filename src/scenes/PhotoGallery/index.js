@@ -1,20 +1,24 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import './style.css';
+import { withRouter } from 'react-router'
  
-class Album extends Component {
+class PhotoGallery extends Component {
 
 	render() {
-		const {album} = this.props;
+		const {albumId, album} = this.props;
 		return (
 			album ?
 			<div id="photos">
   				<ul id="photo-gallery">
   					{
 					  album.map(photo =>
-						  <li key={photo.id}>
-						     <img alt={photo.title} src={photo.thumbnailUrl} />
-						  </li>
+					  	<Link to={'/album/' + albumId + "/" + photo.id} style={{ textDecoration: 'none' }} key={photo.id}>
+							<li key={photo.id}>
+								<img alt={photo.title} src={photo.thumbnailUrl} />
+							</li>
+						</Link>
 					)}
 				</ul>
 			</div>
@@ -27,8 +31,8 @@ class Album extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-	id: ownProps.match.params.id,
-	album: state.albums[ownProps.match.params.id]
+	albumId: ownProps.match.params.albumId,
+	album: state.albums[ownProps.match.params.albumId]
 });
 
-export default connect(mapStateToProps)(Album);
+export default withRouter(connect(mapStateToProps)(PhotoGallery));
