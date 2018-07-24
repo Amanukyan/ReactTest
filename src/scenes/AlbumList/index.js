@@ -7,9 +7,9 @@ import './style.css';
 
 class AlbumList extends React.Component {
 
-  createCardInfosForAlbums(albums){
+  createCardInfosForAlbums(albums) {
     var albumCardInfos = []
-    for(var albumId in albums) {
+    for (var albumId in albums) {
       var firstPhoto = albums[albumId][0]
       var preview = {
         "id" : albumId,
@@ -24,13 +24,13 @@ class AlbumList extends React.Component {
 
   render() {
     const { error, loading, albums } = this.props;
-  
+
     if (error) {
       return <div>Error! {error.message}</div>;
     }
 
     if (loading) {
-      return <div>Loading...</div>;
+      return <div className="loader">Loading...</div>;
     }
 
     const albumCardInfos = this.createCardInfosForAlbums(albums)
@@ -39,15 +39,15 @@ class AlbumList extends React.Component {
       <div className="grid">
         {
           albumCardInfos.map(album =>
-            <Link to={'/album/' + album.id} style={{ textDecoration: 'none' }} key={album.id}>
-              <div className="card">
-                <img className="card_image" alt={album.title} src={album.thumbnailUrl} />
-                <div className="card_content">
-                    <h3 className="card_title">{album.title}</h3>
-                    <p className="card_subtitle">{album.photoCount} curated photos</p>
-                </div>
+              <div className="card" key={album.id}>
+                <Link to={'/album/' + album.id} style={{ textDecoration: 'none' }}>
+                  <img className="card_image" alt={album.title} src={album.thumbnailUrl} />
+                  <div className="card_content">
+                      <h3 className="card_title">{album.title}</h3>
+                      <p className="card_subtitle">{album.photoCount} curated photos</p>
+                  </div>
+                </Link>
               </div>
-            </Link>
         )}
       </div>
     );

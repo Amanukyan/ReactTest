@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './style.css';
- 
+
 class PhotoDetail extends Component {
 
 	render() {
@@ -10,8 +10,8 @@ class PhotoDetail extends Component {
 		return (
 			photo ?
 			<div className="container">
-				<img alt= "" src= {photo.url} />
-				<h3> {photo.title}</h3>
+				<img alt="" src={photo.url} />
+				<h3>{photo.title}</h3>
 			</div>:
 			<div>
 				{/* TODO: */}

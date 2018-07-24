@@ -5,6 +5,7 @@ import { fetchAlbums } from "./actions/albumActions";
 import AlbumList from "./scenes/AlbumList"
 import PhotoGallery from './scenes/PhotoGallery'
 import PhotoDetail from './scenes/PhotoDetail'
+import ScrollToTop from './components/ScrollToTop'
 
 
 class App extends Component {
@@ -18,13 +19,15 @@ class App extends Component {
     return (
       <Provider store={this.props.store}>
       	<Router>
-      		<div>
-	      		<Switch>
-    					<Route exact path='/' component={AlbumList} />
-              <Route path='/album/:albumId/:id' key='photo' component={PhotoDetail} />
-    					<Route path='/album/:albumId' key='album' component={PhotoGallery} />
-    				</Switch>
-     		   </div>
+          <ScrollToTop>
+        		<div>
+  	      		<Switch>
+      					<Route exact path='/' component={AlbumList} />
+                <Route path='/album/:albumId/:id' key='photo' component={PhotoDetail} />
+      					<Route path='/album/:albumId' key='album' component={PhotoGallery} />
+      				</Switch>
+       		   </div>
+          </ScrollToTop>
         </Router>
       </Provider>
     );

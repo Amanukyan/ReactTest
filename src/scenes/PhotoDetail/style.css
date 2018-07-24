@@ -1,4 +1,13 @@
 .container {
     margin: auto;
-    width: 50%;
+    width: 40vw;
+}
+
+img {
+	width: 40vw;
+	height: 40vw;
+}
+
+h3 {
+	text-align: center;
 }
